@@ -17,15 +17,11 @@ public abstract class GenericScreenTemplate extends Activity {
 
     protected abstract int getViewLayoutId();
 
-    protected abstract String getGoalId();
-
     public abstract void doUpdateChecks();
 
     public abstract void prepareStorage(Context context);
 
     public abstract void activateGame();
-
-    public abstract void adClicked();
 
     public abstract Properties getEngineProperties();
 
