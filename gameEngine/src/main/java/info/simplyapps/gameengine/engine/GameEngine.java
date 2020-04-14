@@ -11,10 +11,6 @@ public interface GameEngine extends BasicEngine {
 
     GameState getMode();
 
-    boolean isPurchase();
-
-    void setPurchase(boolean b);
-
     void setBonus(boolean b);
 
 }
