@@ -11,6 +11,7 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
+
 import info.simplyapps.gameengine.EngineConstants;
 import info.simplyapps.gameengine.R;
 import info.simplyapps.gameengine.RenderingSystem;
@@ -109,7 +110,9 @@ public abstract class GenericRendererTemplate implements BasicEngine {
         realScreenHeight = mContext.getResources().getDisplayMetrics().heightPixels;
         screenHeight = mContext.getResources().getDisplayMetrics().heightPixels - (Integer) gameProperties.get(EngineConstants.GameProperties.SCREEN_SCALE);
 
-        mLevel = (Integer) properties.get(EngineConstants.GameProperties.LEVEL);
+        if (properties.contains(EngineConstants.GameProperties.LEVEL)) {
+            mLevel = (Integer) properties.get(EngineConstants.GameProperties.LEVEL);
+        }
         if (properties.contains(EngineConstants.GameProperties.SPACE_LR)) {
             spaceLR = (Integer) properties.get(EngineConstants.GameProperties.SPACE_LR);
         } else {
@@ -196,8 +199,14 @@ public abstract class GenericRendererTemplate implements BasicEngine {
                 // do this in a finally so that if an exception is thrown
                 // during the above, we don't leave the Surface in an
                 // inconsistent state
-                if (c != null) {
-                    newHolder.unlockCanvasAndPost(c);
+                try {
+                    if (c != null) {
+                        synchronized (newHolder) {
+                            newHolder.unlockCanvasAndPost(c);
+                        }
+                    }
+                } catch (IllegalArgumentException ignored) {
+                    mRun = false;
                 }
             }
         }

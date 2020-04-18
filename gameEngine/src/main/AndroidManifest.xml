@@ -1,11 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="info.simplyapps.gameengine">
 
-	<!-- Additional for later usage -->
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<!-- Video player -->
-	<uses-permission android:name="android.permission.WAKE_LOCK" />		
-    
     <supports-screens android:resizeable="true"
                   android:smallScreens="true"
                   android:normalScreens="true"

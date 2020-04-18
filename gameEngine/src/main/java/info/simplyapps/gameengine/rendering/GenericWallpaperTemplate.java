@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.service.wallpaper.WallpaperService;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
+
 import info.simplyapps.gameengine.engine.BasicEngine;
 import info.simplyapps.gameengine.rendering.data.ValueContainer;
 
@@ -67,12 +68,20 @@ public abstract class GenericWallpaperTemplate extends WallpaperService implemen
         mWallEngine.changeEngine(engine);
     }
 
+    private void checkEngine() {
+        if (mWallEngine != null) {
+            mWallEngine.shutdownEngine();
+            mWallEngine = null;
+        }
+    }
+
     private void createEngine() {
         mWallEngine = new InternalEngine(this);
     }
 
     @Override
     public Engine onCreateEngine() {
+        checkEngine();
         createEngine();
         mWallEngine.initialize();
         mWallEngine.setBasicEngine(initializeEngine());
@@ -207,13 +216,16 @@ public abstract class GenericWallpaperTemplate extends WallpaperService implemen
             this.mEngine = engine;
         }
 
-        public void changeEngine(BasicEngine engine) {
-            visible = false;
+        public void shutdownEngine() {
             if (mEngine != null) {
-                // exit old engine
                 mEngine.exit();
                 mHandler.removeCallbacks(drawRunner);
             }
+        }
+
+        public void changeEngine(BasicEngine engine) {
+            visible = false;
+            shutdownEngine();
             mEngine = engine;
             // launch
             mEngine.restoreGameState();

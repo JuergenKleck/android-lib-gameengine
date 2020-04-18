@@ -31,4 +31,3 @@ target
 **/build/
 /.gradle/
 local.properties
-/src/main/gen/
