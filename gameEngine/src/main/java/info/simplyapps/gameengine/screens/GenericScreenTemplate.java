@@ -1,13 +1,15 @@
 package info.simplyapps.gameengine.screens;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import info.simplyapps.gameengine.rendering.GenericViewTemplate;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Properties;
 
-public abstract class GenericScreenTemplate extends Activity {
+import info.simplyapps.gameengine.rendering.GenericViewTemplate;
+
+public abstract class GenericScreenTemplate extends AppCompatActivity {
 
     protected GenericViewTemplate mScreenView;
 
@@ -58,6 +60,7 @@ public abstract class GenericScreenTemplate extends Activity {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         //Store the game state
+        super.onSaveInstanceState(outState);
         if (mScreenView != null) {
             outState.putBundle(getViewKey(), mScreenView.saveState());
         }
