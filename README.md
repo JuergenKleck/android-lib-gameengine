@@ -12,6 +12,15 @@ This is a game engine library with common functions which can be used across app
 
 Build the library with gradle and include a new module in your project and copy the .aar release file.
 
+## Build
+
+Build with gradle according to the Android developer website via command-line https://developer.android.com/studio/build/building-cmdline
+or with Android Studio.
+
+### Dependencies
+
+There are no further library dependencies. 
+
 ## Google Play Store
 
 This is not published to the Google Play Store as it is a library module only.
