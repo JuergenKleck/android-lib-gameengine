@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="lib_name">SimplyApps.info GameEngine</string>
+    <string name="lib_name">GameEngine</string>
     
     <!-- Google play game services -->
 	<string name="not_signed_in">You need to sign in first with Google.</string>
