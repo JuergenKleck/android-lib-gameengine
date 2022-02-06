@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="info.simplyapps.gameengine">
+    package="com.juergenkleck.android.gameengine">
 
     <supports-screens android:resizeable="true"
                   android:smallScreens="true"
